@@ -1,18 +1,33 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Cards from './Cards.js';
+
+let apiCall = 'https://api.nasa.gov/neo/rest/v1/feed?start_date=2017-12-22&end_date=2017-12-22&api_key=z3DmHkebzDJBKS7rZWxt1nqp4he9WONGG3Gaz8Mq';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {cardData: {}};
+  }
+
+  componentDidMount() {
+    this.updateCardData();
+  }
+
+  updateCardData() {
+    fetch(apiCall)
+      .then(response => {
+        return response.json();
+      }).then(data => {
+        console.log(data);
+        this.setState({cardData: data});
+      });
+  }
+  
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Cards data={this.state.cardData} />
       </div>
     );
   }
