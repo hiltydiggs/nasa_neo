@@ -1,16 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Cards.css';
 
-class Cards extends Component {
-  render() {
-    return (
-      <div className="card">
-        {this.props.data.near_earth_objects['2017-12-22'][0].name}
-      </div>
-    )
-  }
-}
+function Cards(props) {
+  let data = props.data.near_earth_objects ? props.data.near_earth_objects['2017-12-22'] : [];
+  let cardSet = data.map((each, i) => {
+    return (<li key={i} className="blue-text">{each.name}</li>);
+  });
 
-Cards.defaultProps = {data: 'loading'};
+  return (
+    <div className="card">
+      <ul>
+        {cardSet}
+      </ul>
+    </div>
+  )
+}
 
 export default Cards;
