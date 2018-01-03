@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import Cards from './Cards.js';
 
-let apiCall = 'https://api.nasa.gov/neo/rest/v1/feed?start_date=2017-12-22&end_date=2017-12-22&api_key=z3DmHkebzDJBKS7rZWxt1nqp4he9WONGG3Gaz8Mq';
+const apiKey = '';
+let apiCall = `https://api.nasa.gov/neo/rest/v1/feed?start_date=2017-12-22&end_date=2017-12-22&api_key=${apiKey}`;
 
 class App extends Component {
   constructor(props) {
